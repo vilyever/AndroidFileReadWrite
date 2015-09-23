@@ -32,7 +32,12 @@ public class VDFileWriter {
         if (!clearDir(dir)) {
             return false;
         }
-        return dir.delete();
+
+        if (dir != null) {
+            return dir.delete();
+        }
+
+        return true;
     }
     
     /* #Public Methods */
@@ -66,10 +71,10 @@ public class VDFileWriter {
                     return false;
                 }
             }
-        }
 
-        if (deleteDir) {
-            return deleteDir(dir);
+            if (deleteDir) {
+                return deleteDir(dir);
+            }
         }
 
         return true;
