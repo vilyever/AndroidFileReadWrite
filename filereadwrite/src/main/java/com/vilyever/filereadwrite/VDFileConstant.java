@@ -40,8 +40,12 @@ public class VDFileConstant {
             dir = VDContextHolder.getContext().getCacheDir();
         }
 
+        if (dir == null) {
+            return null;
+        }
+
         if (subDirName != null) {
-            File subDir = new File(dir.getPath() + "/" + subDirName);
+            File subDir = new File(dir.getAbsolutePath() + "/" + subDirName);
             if (VDFileWriter.createDir(subDir)) {
                 dir = subDir;
             }
