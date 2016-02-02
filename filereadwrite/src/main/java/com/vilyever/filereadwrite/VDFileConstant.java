@@ -1,6 +1,7 @@
 package com.vilyever.filereadwrite;
 
 import android.os.Environment;
+import android.support.annotation.Nullable;
 
 import com.vilyever.contextholder.VDContextHolder;
 
@@ -15,22 +16,18 @@ import java.io.File;
 public class VDFileConstant {
     private final VDFileConstant self = this;
 
-    
-    /* #Constructors */    
-    
-    /* #Overrides */    
-    
-    /* #Accessors */     
-     
-    /* #Delegates */     
-     
-    /* #Private Methods */    
-    
-    /* #Public Methods */
+    /* Public Methods */
+    /** @see #getCacheDir(String) */
     public static File getCacheDir() {
         return getCacheDir(null);
     }
 
+    /**
+     * 获取缓存文件夹
+     * @param subDirName 缓存文件夹下子文件夹，若不存在自动创建
+     * @return 指定的缓存文件夹
+     */
+    @Nullable
     public static File getCacheDir(String subDirName) {
         File dir;
         if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
@@ -56,12 +53,4 @@ public class VDFileConstant {
 
         return dir;
     }
-
-    /* #Classes */
-
-    /* #Interfaces */     
-     
-    /* #Annotations @interface */    
-    
-    /* #Enums */
 }

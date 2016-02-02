@@ -18,37 +18,23 @@ import java.io.IOException;
 public class VDFileWriter {
     private final VDFileWriter self = this;
 
-    
-    /* #Constructors */    
-    
-    /* #Overrides */    
-    
-    /* #Accessors */     
-     
-    /* #Delegates */     
-     
-    /* #Private Methods */
-    private static boolean deleteDir(File dir) {
-        if (!clearDir(dir)) {
-            return false;
-        }
-
-        if (dir != null) {
-            return dir.delete();
-        }
-
-        return true;
-    }
-    
-    /* #Public Methods */
+    /* Public Methods */
+    /**
+     * 清空缓存文件夹
+     */
     public static void clearCache() {
         try {
             File dir = VDContextHolder.getContext().getCacheDir();
             if (dir != null && dir.isDirectory()) {
                 clearDir(dir, false);
             }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
-            dir = VDContextHolder.getContext().getExternalCacheDir();
+        try {
+            File dir = VDContextHolder.getContext().getExternalCacheDir();
             if (dir != null && dir.isDirectory()) {
                 clearDir(dir, false);
             }
@@ -58,10 +44,17 @@ public class VDFileWriter {
         }
     }
 
+    /** @see #clearDir(File, boolean) */
     public static boolean clearDir(File dir) {
         return clearDir(dir, false);
     }
 
+    /**
+     * 清空指定文件夹
+     * @param dir 指定文件夹
+     * @param deleteDir 是否清空后删除指定文件夹
+     * @return 是否成否清空
+     */
     public static boolean clearDir(File dir, boolean deleteDir) {
         if (dir != null && dir.isDirectory()) {
             String[] children = dir.list();
@@ -80,6 +73,11 @@ public class VDFileWriter {
         return true;
     }
 
+    /**
+     * 创建指定文件夹
+     * @param dir 指定文件夹
+     * @return 是否创建成功
+     */
     public static boolean createDir(File dir) {
         if (dir == null) {
             return false;
@@ -93,6 +91,12 @@ public class VDFileWriter {
         }
     }
 
+    /**
+     * 向指定文件写入字符串
+     * @param file 指定文件
+     * @param text 要写入的字符串
+     * @return 是否写入成功
+     */
     public static boolean writeText(File file, String text) {
         FileOutputStream outputStream = null;
 
@@ -123,6 +127,12 @@ public class VDFileWriter {
         return false;
     }
 
+    /**
+     * 向指定文件写入Base64
+     * @param file 指定文件
+     * @param base64 要写入的Base64
+     * @return 是否写入成功
+     */
     public static boolean writeBase64String(File file, String base64) {
         FileOutputStream outputStream = null;
         try {
@@ -155,6 +165,12 @@ public class VDFileWriter {
         return false;
     }
 
+    /**
+     * 向指定文件写入bitmap
+     * @param file 指定文件
+     * @param bitmap 要写入的bitmap
+     * @return 是否写入成功
+     */
     public static boolean writeBitmap(File file, Bitmap bitmap) {
         FileOutputStream outputStream = null;
         try {
@@ -181,11 +197,21 @@ public class VDFileWriter {
         return false;
     }
 
-    /* #Classes */
+    /* Private Methods */
+    /**
+     * 删除文件夹
+     * @param dir 指定文件夹
+     * @return 是否删除成功
+     */
+    private static boolean deleteDir(File dir) {
+        if (!clearDir(dir)) {
+            return false;
+        }
 
-    /* #Interfaces */     
-     
-    /* #Annotations @interface */    
-    
-    /* #Enums */
+        if (dir != null) {
+            return dir.delete();
+        }
+
+        return true;
+    }
 }

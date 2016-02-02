@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,18 +22,12 @@ import java.io.InputStreamReader;
 public class VDFileReader {
     private final VDFileReader self = this;
 
-    
-    /* #Constructors */    
-    
-    /* #Overrides */    
-    
-    /* #Accessors */     
-     
-    /* #Delegates */     
-     
-    /* #Private Methods */    
-    
-    /* #Public Methods */
+    /* Public Methods */
+    /**
+     * 从文件中读取字符串
+     * @param file 指定文件
+     * @return 读取的字符串
+     */
     public static String readText(File file) {
         if (!file.exists()) {
             return null;
@@ -56,9 +49,6 @@ public class VDFileReader {
 
             return stringBuilder.toString();
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
         catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,6 +66,11 @@ public class VDFileReader {
         return null;
     }
 
+    /**
+     * 从指定文件读取Base64编码
+     * @param file 指定文件
+     * @return Base64编码
+     */
     public static String readBase64(File file) {
         if (!file.exists()) {
             return null;
@@ -131,6 +126,11 @@ public class VDFileReader {
         return null;
     }
 
+    /**
+     * 从指定文件读取bitmap图片
+     * @param file 指定文件
+     * @return bitmap图片
+     */
     public static Bitmap readBitmap(File file) {
         if (!file.exists()) {
             return null;
@@ -142,12 +142,4 @@ public class VDFileReader {
 
         return bitmap;
     }
-
-    /* #Classes */
-
-    /* #Interfaces */     
-     
-    /* #Annotations @interface */    
-    
-    /* #Enums */
 }
