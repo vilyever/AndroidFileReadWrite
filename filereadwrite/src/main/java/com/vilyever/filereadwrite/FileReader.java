@@ -14,13 +14,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * VDFileReader
+ * FileReader
  * AndroidFileReadWrite <com.vilyever.filereadwrite>
  * Created by vilyever on 2015/9/22.
  * Feature:
  */
-public class VDFileReader {
-    private final VDFileReader self = this;
+public class FileReader {
+    private final FileReader self = this;
 
     /* Public Methods */
     /**

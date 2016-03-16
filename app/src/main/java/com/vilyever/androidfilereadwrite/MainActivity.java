@@ -9,10 +9,9 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.vilyever.contextholder.VDContextHolder;
-import com.vilyever.filereadwrite.VDFileConstant;
-import com.vilyever.filereadwrite.VDFileReader;
-import com.vilyever.filereadwrite.VDFileWriter;
+import com.vilyever.filereadwrite.FileConstant;
+import com.vilyever.filereadwrite.FileReader;
+import com.vilyever.filereadwrite.FileWriter;
 
 import java.io.File;
 
@@ -23,24 +22,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        VDContextHolder.initial(getApplicationContext());
-
         String text = "hello text";
-        String filePath = VDFileConstant.getCacheDir("test").getAbsolutePath() + "/text";
-        VDFileWriter.writeText(new File(filePath), text);
+        String filePath = FileConstant.getCacheDir("test").getAbsolutePath() + "/text";
+        FileWriter.writeText(new File(filePath), text);
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        filePath = VDFileConstant.getCacheDir("test").getAbsolutePath() + "/launcher.png";
-        VDFileWriter.writeBitmap(new File(filePath), bitmap);
+        filePath = FileConstant.getCacheDir("test").getAbsolutePath() + "/launcher.png";
+        FileWriter.writeBitmap(new File(filePath), bitmap);
         bitmap.recycle();
 
         TextView label = (TextView) findViewById(R.id.label);
-        filePath = VDFileConstant.getCacheDir("test").getAbsolutePath() + "/text";
-        label.setText(VDFileReader.readText(new File(filePath)));
+        filePath = FileConstant.getCacheDir("test").getAbsolutePath() + "/text";
+        label.setText(FileReader.readText(new File(filePath)));
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        filePath = VDFileConstant.getCacheDir("test").getAbsolutePath() + "/launcher.png";
-        bitmap = VDFileReader.readBitmap(new File(filePath));
+        filePath = FileConstant.getCacheDir("test").getAbsolutePath() + "/launcher.png";
+        bitmap = FileReader.readBitmap(new File(filePath));
         imageView.setImageBitmap(bitmap);
     }
 

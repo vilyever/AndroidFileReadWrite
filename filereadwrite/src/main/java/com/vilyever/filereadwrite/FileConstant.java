@@ -3,18 +3,18 @@ package com.vilyever.filereadwrite;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 
-import com.vilyever.contextholder.VDContextHolder;
+import com.vilyever.contextholder.ContextHolder;
 
 import java.io.File;
 
 /**
- * VDFileConstant
+ * FileConstant
  * AndroidFileReadWrite <com.vilyever.filereadwrite>
  * Created by vilyever on 2015/9/22.
  * Feature:
  */
-public class VDFileConstant {
-    private final VDFileConstant self = this;
+public class FileConstant {
+    private final FileConstant self = this;
 
     /* Public Methods */
     /** @see #getCacheDir(String) */
@@ -31,10 +31,10 @@ public class VDFileConstant {
     public static File getCacheDir(String subDirName) {
         File dir;
         if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
-            dir = VDContextHolder.getContext().getExternalCacheDir();
+            dir = ContextHolder.getContext().getExternalCacheDir();
         }
         else {
-            dir = VDContextHolder.getContext().getCacheDir();
+            dir = ContextHolder.getContext().getCacheDir();
         }
 
         if (dir == null) {
@@ -43,7 +43,7 @@ public class VDFileConstant {
 
         if (subDirName != null) {
             File subDir = new File(dir.getAbsolutePath() + "/" + subDirName);
-            if (VDFileWriter.createDir(subDir)) {
+            if (FileWriter.createDir(subDir)) {
                 dir = subDir;
             }
             else {

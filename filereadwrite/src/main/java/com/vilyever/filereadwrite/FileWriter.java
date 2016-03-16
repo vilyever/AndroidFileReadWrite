@@ -3,20 +3,20 @@ package com.vilyever.filereadwrite;
 import android.graphics.Bitmap;
 import android.util.Base64;
 
-import com.vilyever.contextholder.VDContextHolder;
+import com.vilyever.contextholder.ContextHolder;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * VDFileWriter
+ * FileWriter
  * AndroidFileReadWrite <com.vilyever.filereadwrite>
  * Created by vilyever on 2015/9/22.
  * Feature:
  */
-public class VDFileWriter {
-    private final VDFileWriter self = this;
+public class FileWriter {
+    private final FileWriter self = this;
 
     /* Public Methods */
     /**
@@ -24,7 +24,7 @@ public class VDFileWriter {
      */
     public static void clearCache() {
         try {
-            File dir = VDContextHolder.getContext().getCacheDir();
+            File dir = ContextHolder.getContext().getCacheDir();
             if (dir != null && dir.isDirectory()) {
                 clearDir(dir, false);
             }
@@ -34,7 +34,7 @@ public class VDFileWriter {
         }
 
         try {
-            File dir = VDContextHolder.getContext().getExternalCacheDir();
+            File dir = ContextHolder.getContext().getExternalCacheDir();
             if (dir != null && dir.isDirectory()) {
                 clearDir(dir, false);
             }
